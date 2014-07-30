@@ -3,9 +3,9 @@ package com.sage.binding.mvvm.facade;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
-import com.sage.binding.GlobalUncaughtExceptionHandler;
 import com.sage.binding.R;
 import com.sage.binding.mvvm.BindingCore;
+import com.sage.core.GlobalUncaughtExceptionHandler;
 
 import android.app.Activity;
 import android.content.Context;

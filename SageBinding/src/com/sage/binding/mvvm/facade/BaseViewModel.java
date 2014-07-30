@@ -6,9 +6,10 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.sage.binding.GlobalUncaughtExceptionHandler;
 import com.sage.binding.mvvm.model.PropertyChangedHandler;
 
+
+import com.sage.core.GlobalUncaughtExceptionHandler;
 
 import android.content.Context;
 

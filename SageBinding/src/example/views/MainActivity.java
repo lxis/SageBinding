@@ -2,16 +2,15 @@ package example.views;
 
 import java.util.ArrayList;
 
-import com.sage.binding.AsyncHelper;
 import com.sage.binding.R;
 import com.sage.binding.R.layout;
 import com.sage.binding.R.menu;
 import com.sage.binding.mvvm.facade.BindingAdapter;
 import com.sage.binding.mvvm.facade.ViewModelBinder;
+import com.sage.core.AsyncHelper;
 
 import example.viewmodels.NewMainItemViewModel;
 import example.viewmodels.NewMainViewModel;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;

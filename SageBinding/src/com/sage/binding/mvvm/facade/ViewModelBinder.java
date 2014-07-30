@@ -2,8 +2,8 @@ package com.sage.binding.mvvm.facade;
 
 import java.lang.reflect.InvocationTargetException;
 
-import com.sage.binding.GlobalUncaughtExceptionHandler;
 import com.sage.binding.mvvm.BindingCore;
+import com.sage.core.GlobalUncaughtExceptionHandler;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
