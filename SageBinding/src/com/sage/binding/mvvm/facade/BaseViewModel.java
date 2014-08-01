@@ -8,62 +8,48 @@ import java.util.HashMap;
 
 import com.sage.binding.mvvm.model.PropertyChangedHandler;
 
-
 import com.sage.core.GlobalUncaughtExceptionHandler;
 
 import android.content.Context;
 
-public class BaseViewModel
-{
+public class BaseViewModel {
 	public Context context;
 
-	public void setContext(Context context)
-	{
+	public void setContext(Context context) {
 		this.context = context;
 	}
 
 	public HashMap<String, ArrayList<PropertyChangedHandler>> Handlers = new HashMap<String, ArrayList<PropertyChangedHandler>>();
-	
-	public void AddHandler(String PropertyName,Method method,Field Field,android.view.View View)
-	{
+
+	public void AddHandler(String PropertyName, Method method, Field Field,
+			android.view.View View) {
 		PropertyChangedHandler handler = new PropertyChangedHandler();
 		handler.Method = method;
-		handler.Field = Field;		
+		handler.Field = Field;
 		handler.View = View;
-		handler.PropertyName = PropertyName;					
-		if(Handlers.containsKey(PropertyName))
-		{
+		handler.PropertyName = PropertyName;
+		if (Handlers.containsKey(PropertyName)) {
 			Handlers.get(PropertyName).add(handler);
-		}
-		else
-		{
+		} else {
 			ArrayList<PropertyChangedHandler> handlers = new ArrayList<PropertyChangedHandler>();
 			handlers.add(handler);
 			Handlers.put(PropertyName, handlers);
 		}
-			
+
 	}
 
-	public void NotifyPropertyChanged(String property)
-	{
+	public void NotifyPropertyChanged(String property) {
 		ArrayList<PropertyChangedHandler> handlers = Handlers.get(property);
-		if(handlers == null)
+		if (handlers == null)
 			return;
 		for (PropertyChangedHandler handler : handlers)
-			try
-			{
+			try {
 				handler.Handle(this);
-			}
-			catch (IllegalAccessException e)
-			{
+			} catch (IllegalAccessException e) {
 				GlobalUncaughtExceptionHandler.AddUnhandledException(e);
-			}
-			catch (IllegalArgumentException e)
-			{
+			} catch (IllegalArgumentException e) {
 				GlobalUncaughtExceptionHandler.AddUnhandledException(e);
-			}
-			catch (InvocationTargetException e)
-			{
+			} catch (InvocationTargetException e) {
 				GlobalUncaughtExceptionHandler.AddUnhandledException(e);
 			}
 

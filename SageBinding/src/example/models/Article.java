@@ -1,7 +1,7 @@
 package example.models;
 
-public class Article {	
-	
+public class Article {
+
 	public int Id;
 	public String Content;
 	public Boolean IsGood = false;

@@ -9,41 +9,32 @@ import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 
-public class ViewModelBinder
-{
+public class ViewModelBinder {
 	static BindingCore bind = new BindingCore();
-	public static void Bind(View view,BaseViewModel viewModel) 
-	{
-		try
-		{
+
+	public static void Bind(View view, BaseViewModel viewModel) {
+		try {
 			bind.bindTag(view, viewModel.getClass());
-		}
-		catch (NoSuchFieldException e)
-		{
+		} catch (NoSuchFieldException e) {
+			GlobalUncaughtExceptionHandler.AddUnhandledException(e);
+		} catch (NoSuchMethodException e) {
 			GlobalUncaughtExceptionHandler.AddUnhandledException(e);
 		}
-		catch (NoSuchMethodException e)
-		{
-			GlobalUncaughtExceptionHandler.AddUnhandledException(e);
-		}
-		try
-		{
+		try {
 			bind.bindData(view, viewModel);
-		}
-		catch (IllegalAccessException e)
-		{
+		} catch (IllegalAccessException e) {
 			GlobalUncaughtExceptionHandler.AddUnhandledException(e);
-		}
-		catch (InvocationTargetException e)
-		{
+		} catch (InvocationTargetException e) {
 			GlobalUncaughtExceptionHandler.AddUnhandledException(e);
 		}
 	}
-	public static void Bind(BaseViewModel viewModel, int layoutId, Activity bindingActivity)
-	{				
-		View rootView = LayoutInflater.from(bindingActivity).inflate(layoutId, null);
-		ViewModelBinder.Bind(rootView , viewModel);
-		bindingActivity.setContentView(rootView);				
-		
+
+	public static void Bind(BaseViewModel viewModel, int layoutId,
+			Activity bindingActivity) {
+		View rootView = LayoutInflater.from(bindingActivity).inflate(layoutId,
+				null);
+		ViewModelBinder.Bind(rootView, viewModel);
+		bindingActivity.setContentView(rootView);
+
 	}
 }

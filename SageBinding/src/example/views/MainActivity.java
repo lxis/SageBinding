@@ -22,41 +22,35 @@ import android.widget.AbsListView.OnScrollListener;
 
 public class MainActivity extends Activity {
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-    
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
 
 	NewMainViewModel viewModel = new NewMainViewModel();
 	ListView listView;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		ViewModelBinder.Bind(viewModel, R.layout.new_main_activity, MainActivity.this);
+		ViewModelBinder.Bind(viewModel, R.layout.new_main_activity,
+				MainActivity.this);
 		listView = (ListView) findViewById(R.id.newMainList);
 		bindList();
 	}
 
-
-	private void bindList()
-	{
-		new AsyncHelper<ArrayList<NewMainItemViewModel>>()
-		{
+	private void bindList() {
+		new AsyncHelper<ArrayList<NewMainItemViewModel>>() {
 			@Override
-			protected ArrayList<NewMainItemViewModel> await()
-			{
+			protected ArrayList<NewMainItemViewModel> await() {
 				return viewModel.LoadData();
 			}
 
 			@Override
-			protected void async(ArrayList<NewMainItemViewModel> result)
-			{
+			protected void async(ArrayList<NewMainItemViewModel> result) {
 				viewModel.AddData(result);
 				bindAdapter();
 			}
@@ -65,16 +59,14 @@ public class MainActivity extends Activity {
 
 	BindingAdapter<NewMainItemViewModel> adapter;
 
-	private void bindAdapter()
-	{
-		if (adapter == null)
-		{
-			adapter = new BindingAdapter<NewMainItemViewModel>(viewModel.Data, MainActivity.this, R.layout.new_main_list_item, NewMainItemViewModel.class);
+	private void bindAdapter() {
+		if (adapter == null) {
+			adapter = new BindingAdapter<NewMainItemViewModel>(viewModel.Data,
+					MainActivity.this, R.layout.new_main_list_item,
+					NewMainItemViewModel.class);
 			listView.setAdapter(adapter);
-		}
-		else
-		{
+		} else {
 			adapter.notifyDataSetChanged();
 		}
-	};    
+	};
 }

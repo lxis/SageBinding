@@ -6,19 +6,16 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class TagBindingItem
-{
+public class TagBindingItem {
 	public Method Method;
-	
-	public ArrayList<Field> Fields = new ArrayList<Field>();
-	
 
-	public Field getLastField()
-	{
-		return Fields.get(Fields.size()-1);
+	public ArrayList<Field> Fields = new ArrayList<Field>();
+
+	public Field getLastField() {
+		return Fields.get(Fields.size() - 1);
 	}
-	
-	public String PropertyName;		
-	
+
+	public String PropertyName;
+
 	public android.view.View View;
 }
